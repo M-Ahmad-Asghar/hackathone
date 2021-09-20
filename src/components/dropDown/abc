@@ -1,0 +1,65 @@
+import { React, useState } from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Select } from '@material-ui/core';
+
+
+
+
+
+const options = [
+    'None',
+    'Karachi',
+    'Punjabi',
+    'Pishawari',
+    'Pakistani',
+    'Desi',
+    'Chines',
+    'Fast Food',
+    'Continental',
+    'Indian',
+    'Dhaba Style',
+    'Organic',
+];
+
+const ITEM_HEIGHT = 48;
+
+export default function DropDownMenu(props) {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [category, setcategory] = useState('Category')
+
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+        const handleChange = e => setcategory(e.target.value)
+
+    return (
+        <div>
+
+            <h4 aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                onClick={handleClick} style={{ display:"inline", padding:"20px", paddingLeft:"0px" }}>{category}</h4>
+
+            <Select  value={category} onChange={handleChange}>
+
+                {options.map((option) => (
+                    <MenuItem key={option}  onClick={handleClose}   >
+
+                        {option}
+                    </MenuItem>
+
+
+                ))}
+            </Select>
+        </div>
+    );
+}

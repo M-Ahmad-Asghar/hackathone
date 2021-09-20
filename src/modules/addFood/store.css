@@ -1,0 +1,13 @@
+.root{
+    height:800px;
+    /* background-image:'./sl1.jpg'; */
+    display:flex;
+     flex:1;
+    align-items:center;
+     flex-direction:column;
+      row-gap:30px 
+}
+#heading{
+    font-family: sans-serif;
+    font-weight: 600;
+}

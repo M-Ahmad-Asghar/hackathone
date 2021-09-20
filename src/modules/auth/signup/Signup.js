@@ -1,11 +1,11 @@
-import React from 'react';
+import {React, useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -47,6 +47,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+  const [loading, setLoading] = useState(false);
+  const [fName, setfName] = useState('')
+  const [lName, setLName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+let data = {
+  fName:fName,
+  lName:lName,
+  email:email,
+  password:password,
+  type:"user"
+}
   const classes = useStyles();
 
   return (
@@ -66,6 +78,7 @@ export default function SignUp() {
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
+                onChange={(e) => setfName(e.target.value)}
                 required
                 fullWidth
                 id="firstName"
@@ -78,6 +91,7 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                onChange={(e) => setLName(e.target.value)}
                 id="lastName"
                 label="Last Name"
                 name="lastName"
@@ -90,6 +104,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="email"
+                onChange={(e) => setEmail(e.target.value)}
                 label="Email Address"
                 name="email"
                 autoComplete="email"
@@ -100,6 +115,7 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                onChange={(e) => setPassword(e.target.value)}
                 name="password"
                 label="Password"
                 type="password"
@@ -114,15 +130,16 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
+          <Link style={{textDecoration:"none"}}>
+                  <Button
+                    // type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}>
+                   Sign up!
+                  </Button>
+                </Link>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="#" variant="body2">

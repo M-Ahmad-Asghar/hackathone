@@ -15,7 +15,9 @@ import ExitToAppSharpIcon from '@material-ui/icons/ExitToAppSharp';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Divider from '@material-ui/core/Divider';
-
+import { useState, useEffect } from "react";
+import { doLogout } from '../../store/actions/AuthAction';
+import { useSelector, useDispatch } from 'react-redux'
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -33,10 +35,10 @@ const useStyles = makeStyles((theme) => ({
     textDecoration:"none",
   },
 }));
-function cta() {
-  
-}
+
+
 export default function Header(props) {
+ const dispatch = useDispatch()
   const classes = useStyles();
   const { sections, title } = props;
 
@@ -78,15 +80,16 @@ export default function Header(props) {
     <Divider variant={"fullWidth"} />
     <Dropdown.Item >
     <Link to="/signup">
-      <p>Sign Up</p>
+      <p style={{color:"black", textDecoration:"none"}}>Sign Up</p>
       
       </Link>
       </Dropdown.Item>
     
     <Divider variant={"fullWidth"} />
     <Dropdown.Item >
-    <Link to="/home">
-      Log Out
+      <Link >
+      <p style={{color:"black", textDecoration:"none"}} onClick={dispatch(doLogout)}>Log Out</p>
+      
       </Link>
       </Dropdown.Item>
     
